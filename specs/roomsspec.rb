@@ -77,4 +77,25 @@ class RoomSpec < MiniTest::Test
     assert_equal("whoop", room.guest_likes_a_song(guest2))
   end
 
+  def test_guest_money_is_taken
+    room = Room.new
+    guest = Guest.new("Jon", 100, ["People", "Awolnation"])
+    room.add_guest(guest)
+    assert_equal(35, room.money_taken)
+  end
+
+  def test_lots_of_money_taken
+    room = Room.new
+    guest1 = Guest.new("Jon", 100, ["People", "Awolnation"])
+    guest2 = Guest.new("Ron", 90, ["People", "Awolnation"])
+    guest3 = Guest.new("Rob", 85, ["People", "Awolnation"])
+    guest4 = Guest.new("Bob", 120, ["People", "Awolnation"])
+    room.add_guest(guest1)
+    room.add_guest(guest2)
+    room.add_guest(guest3)
+    room.delete_guest()
+    room.add_guest(guest4)
+    assert_equal(140, room.money_taken)
+  end
+
 end

@@ -4,6 +4,7 @@ class Room
     @guest_array = []
     @song_list = []
     @capacity = 3
+    @money_taken = 0
   end
 
   def add_guest(guest)
@@ -11,6 +12,7 @@ class Room
     if @guest_array.count < 3
       @guest_array << guest
       guest.money -= 35
+      @money_taken += 35
     else
       "Room is full!"
     end
@@ -45,7 +47,11 @@ class Room
      if found 
       return "whoop"
      end
-
   end
+
+  def money_taken
+    return @money_taken
+  end
+
 
 end
